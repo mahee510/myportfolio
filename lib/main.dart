@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:myportfolio/about_me.dart';
+import 'package:myportfolio/app_colors.dart';
+import 'package:myportfolio/contacts.dart';
+import 'package:myportfolio/projects.dart';
+import 'package:myportfolio/resume.dart';
+import 'package:myportfolio/widgets/responsive.dart';
+import 'package:myportfolio/widgets/side_buttons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,105 +19,227 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      title: "Mahendran K",
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: "Poppins"),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
+  PageController pageController = PageController();
+  int selectedIndex = 0;
+  changePage(int page) {
+    pageController.jumpToPage(page);
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      selectedIndex = page;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    Size size = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: size.height * 0.1,
+              padding: EdgeInsets.symmetric(
+                  horizontal: size.width * 0.035, vertical: size.height * 0.02),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      text: "Mahendran K ",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: Responsive.isMobile(context)
+                            ? size.width * 0.06
+                            : size.width * 0.015,
+                        height: 1.2,
+                        color: AppColors.black,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: " /  FLUTTER DEVELOPER",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w100,
+                            fontSize: Responsive.isMobile(context)
+                                ? size.width * 0.03
+                                : size.width * 0.0085,
+                            height: 1.2,
+                            fontFamily: "Avenir",
+                            letterSpacing: 1.2,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  if (!Responsive.isMobile(context))
+                    Row(
+                      children: [
+                        SideButtons(
+                          btnName: "ABOUT ME",
+                          currentIndex: 0,
+                          selectedIndex: selectedIndex,
+                          onTaped: () {
+                            changePage(0);
+                          },
+                        ),
+                        SideButtons(
+                          btnName: "RESUME",
+                          currentIndex: 1,
+                          selectedIndex: selectedIndex,
+                          onTaped: () {
+                            changePage(1);
+                          },
+                        ),
+                        SideButtons(
+                          btnName: "PROJECTS",
+                          currentIndex: 2,
+                          selectedIndex: selectedIndex,
+                          onTaped: () {
+                            changePage(2);
+                          },
+                        ),
+                        SideButtons(
+                          btnName: "CONTACTS",
+                          currentIndex: 3,
+                          selectedIndex: selectedIndex,
+                          onTaped: () {
+                            changePage(3);
+                          },
+                        ),
+                      ],
+                    )
+                ],
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          height: size.height,
+                          width: !Responsive.isMobile(context) &&
+                                  selectedIndex == 0
+                              ? size.width / 2.5
+                              : size.width,
+                          color: AppColors.basicColor,
+                        ),
+                        SizedBox(
+                          height: size.height,
+                          child: PageView(
+                            controller: pageController,
+                            physics: const NeverScrollableScrollPhysics(),
+                            children: [
+                              AboutMe(size: size),
+                              const Resume(),
+                              const Projects(),
+                              const Contacts(),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    Container(
+                      width: size.width,
+                      height: size.height * 0.1,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.02),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          if (!Responsive.isMobile(context))
+                            const Text(
+                              "© 2022 by Mahendran K",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w100,
+                                fontFamily: "Avenir",
+                              ),
+                            ),
+                          if (!Responsive.isMobile(context)) const Spacer(),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Text(
+                                "Call",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "Avenir",
+                                ),
+                              ),
+                              SizedBox(height: size.height * 0.02),
+                              InkWell(
+                                onTap: () {
+                                  canLaunchUrl(Uri(
+                                      scheme: 'tel', path: '+91 6383518781'));
+                                },
+                                child: const Text(
+                                  "+91 6383518781",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w100,
+                                    fontFamily: "Avenir",
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          if (Responsive.isMobile(context))
+                            const Spacer()
+                          else
+                            SizedBox(width: size.width * 0.02),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Text(
+                                "Write",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "Avenir",
+                                ),
+                              ),
+                              SizedBox(height: size.height * 0.02),
+                              InkWell(
+                                onTap: () {
+                                  canLaunchUrl(Uri(
+                                      scheme: 'mailto',
+                                      path: 'mahendrank715@gmail.com'));
+                                },
+                                child: const Text(
+                                  "mahendrank715@gmail.com",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w100,
+                                    fontFamily: "Avenir",
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
