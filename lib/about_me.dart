@@ -28,6 +28,8 @@ class _AboutMeState extends State<AboutMe> {
     super.initState();
   }
 
+  int year = (DateTime.now().year - 2019);
+
   onBtn1Hover(bool value) {
     setState(() {
       if (value) {
@@ -70,10 +72,10 @@ class _AboutMeState extends State<AboutMe> {
             FadeIn(
               duration: const Duration(seconds: 1),
               child: Container(
-                height: widget.size.height * 0.525, //525
-                width: widget.size.height * 0.378, // 378
+                height: widget.size.height * 0.525,
+                width: widget.size.height * 0.378,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(20),
                   color: AppColors.basicLightColor,
                   boxShadow: const [
                     BoxShadow(
@@ -124,7 +126,7 @@ class _AboutMeState extends State<AboutMe> {
                       ),
                     ),
                     const Spacer(),
-                    SocialWidgets(size: widget.size, iconSize: 25),
+                    SocialWidgets(size: widget.size, iconSize: 20),
                   ],
                 ),
               ),
@@ -249,15 +251,15 @@ class _AboutMeState extends State<AboutMe> {
                   child: AnimatedTextKit(
                     animatedTexts: [
                       TypewriterAnimatedText(
-                        "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font.\n\n I’m a great place for you to tell a story and let your users know a little more about you.",
+                        "I am Mahendran, a flutter developer with $year years of experience. I have good exposure to creating mobile applications and am involved in all phases of the projects. \nI'll assist you with several updates for various platforms. By considering your requirements, I'll try to give the best and most creative solution.",
                         speed: const Duration(milliseconds: 30),
-                        textStyle:
-                            Theme.of(context).textTheme.bodyText2!.copyWith(
-                                  fontFamily: "Avenir",
-                                  color: AppColors.black,
-                                  height: 1.5,
-                                  letterSpacing: 2.0,
-                                ),
+                        textStyle: const TextStyle(
+                          fontFamily: "Avenir",
+                          color: AppColors.black,
+                          height: 1.5,
+                          letterSpacing: 2.0,
+                          fontSize: 17,
+                        ),
                       ),
                     ],
                     isRepeatingAnimation: false,
