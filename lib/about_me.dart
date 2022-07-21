@@ -23,12 +23,19 @@ class _AboutMeState extends State<AboutMe> {
 
   Color btn2border = AppColors.black;
 
+  String year = (DateTime.now().difference(DateTime(2019, 05, 20)).inDays / 365)
+      .toStringAsFixed(1)
+      .split('.')[0];
+
+  String month =
+      (DateTime.now().difference(DateTime(2019, 05, 20, 10, 30)).inDays / 365)
+          .toStringAsFixed(1)
+          .split('.')[1];
+
   @override
   void initState() {
     super.initState();
   }
-
-  int year = (DateTime.now().year - 2019);
 
   onBtn1Hover(bool value) {
     setState(() {
@@ -74,10 +81,12 @@ class _AboutMeState extends State<AboutMe> {
               child: Container(
                 height: widget.size.height * 0.525,
                 width: widget.size.height * 0.378,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20)),
                   color: AppColors.basicLightColor,
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
                       blurRadius: 10,
                       color: AppColors.shadow,
@@ -251,7 +260,7 @@ class _AboutMeState extends State<AboutMe> {
                   child: AnimatedTextKit(
                     animatedTexts: [
                       TypewriterAnimatedText(
-                        "I am Mahendran, a flutter developer with $year years of experience. I have good exposure to creating mobile applications and am involved in all phases of the projects. \nI'll assist you with several updates for various platforms. By considering your requirements, I'll try to give the best and most creative solution.",
+                        "I am Mahendran, a flutter developer with $year years and $month months of experience. I have good exposure to creating mobile applications and am involved in all phases of the projects. \nI'll assist you with several updates for various platforms. By considering your requirements, I'll try to give the best and most creative solution.",
                         speed: const Duration(milliseconds: 30),
                         textStyle: const TextStyle(
                           fontFamily: "Avenir",
