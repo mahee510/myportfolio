@@ -95,14 +95,14 @@ class _MyHomePageState extends State<MyHomePage> {
                             changePage(2);
                           },
                         ),
-                        SideButtons(
-                          btnName: "CONTACTS",
-                          currentIndex: 3,
-                          selectedIndex: selectedIndex,
-                          onTaped: () {
-                            changePage(3);
-                          },
-                        ),
+                        // SideButtons(
+                        //   btnName: "CONTACTS",
+                        //   currentIndex: 3,
+                        //   selectedIndex: selectedIndex,
+                        //   onTaped: () {
+                        //     changePage(3);
+                        //   },
+                        // ),
                       ],
                     )
                 ],
@@ -117,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Container(
                           height: size.height,
                           width: !Responsive.isMobile(context) &&
-                                  selectedIndex == 1
+                                  selectedIndex == 0
                               ? size.width / 2.5
                               : size.width,
                           color: AppColors.basicColor,
@@ -130,8 +130,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: [
                               AboutMe(size: size),
                               Resume(size: size),
-                              const Projects(),
-                              const Contacts(),
+                              Projects(size: size),
+                              // const Contacts(),
                             ],
                           ),
                         )

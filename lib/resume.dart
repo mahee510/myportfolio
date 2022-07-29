@@ -116,20 +116,22 @@ class _ResumeState extends State<Resume> {
               ],
             ),
             SizedBox(height: widget.size.height * 0.02),
-            AnimatedList(
+            ListView.builder(
               shrinkWrap: true,
-              initialItemCount: experience.length,
-              itemBuilder: (context, index, animation) {
+              itemCount: experience.length,
+              itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 30),
-                  child: ExperienceContainer(
-                    size: widget.size,
-                    title: experience[index]['jobYear'],
-                    subTitle1: experience[index]['jobTitle'],
-                    subTitle2: experience[index]['companyName'],
-                    subTitle3: experience[index]['companyLocation'],
-                    description: experience[index]['description'],
-                    siteUrl: experience[index]['url'],
+                  child: FadeInUpBig(
+                    child: ExperienceContainer(
+                      size: widget.size,
+                      title: experience[index]['jobYear'],
+                      subTitle1: experience[index]['jobTitle'],
+                      subTitle2: experience[index]['companyName'],
+                      subTitle3: experience[index]['companyLocation'],
+                      description: experience[index]['description'],
+                      siteUrl: experience[index]['url'],
+                    ),
                   ),
                 );
               },
