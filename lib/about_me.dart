@@ -8,7 +8,14 @@ import 'package:myportfolio/widgets/row_or_column.dart';
 
 class AboutMe extends StatefulWidget {
   final Size size;
-  const AboutMe({Key? key, required this.size}) : super(key: key);
+  final Function() moveToResume;
+  final Function() moveToProject;
+  const AboutMe(
+      {Key? key,
+      required this.size,
+      required this.moveToProject,
+      required this.moveToResume})
+      : super(key: key);
 
   @override
   State<AboutMe> createState() => _AboutMeState();
@@ -172,7 +179,7 @@ class _AboutMeState extends State<AboutMe> {
                   children: [
                     ElasticIn(
                       child: OutlinedButton(
-                        onPressed: () {},
+                        onPressed: widget.moveToResume,
                         onHover: onBtn1Hover,
                         style: ButtonStyle(
                           shape: MaterialStateProperty.all(
@@ -214,7 +221,7 @@ class _AboutMeState extends State<AboutMe> {
                     SizedBox(width: widget.size.width * 0.01),
                     ElasticIn(
                       child: OutlinedButton(
-                        onPressed: () {},
+                        onPressed: widget.moveToProject,
                         onHover: onBtn2Hover,
                         style: ButtonStyle(
                           shape: MaterialStateProperty.all(

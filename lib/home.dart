@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/about_me.dart';
 import 'package:myportfolio/app_colors.dart';
-import 'package:myportfolio/contacts.dart';
 import 'package:myportfolio/projects.dart';
 import 'package:myportfolio/resume.dart';
 import 'package:myportfolio/widgets/responsive.dart';
@@ -128,7 +127,15 @@ class _MyHomePageState extends State<MyHomePage> {
                             controller: pageController,
                             physics: const NeverScrollableScrollPhysics(),
                             children: [
-                              AboutMe(size: size),
+                              AboutMe(
+                                size: size,
+                                moveToResume: () {
+                                  changePage(1);
+                                },
+                                moveToProject: () {
+                                  changePage(2);
+                                },
+                              ),
                               Resume(size: size),
                               Projects(size: size),
                               // const Contacts(),
