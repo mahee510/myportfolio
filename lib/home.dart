@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/about_me.dart';
 import 'package:myportfolio/app_colors.dart';
+import 'package:myportfolio/channel.dart';
 import 'package:myportfolio/projects.dart';
 import 'package:myportfolio/resume.dart';
 import 'package:myportfolio/widgets/responsive.dart';
@@ -94,6 +95,14 @@ class _MyHomePageState extends State<MyHomePage> {
                             changePage(2);
                           },
                         ),
+                        SideButtons(
+                          btnName: "OUR CHANNELS",
+                          currentIndex: 3,
+                          selectedIndex: selectedIndex,
+                          onTaped: () {
+                            changePage(3);
+                          },
+                        ),
                         // SideButtons(
                         //   btnName: "CONTACTS",
                         //   currentIndex: 3,
@@ -138,6 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               Resume(size: size),
                               Projects(size: size),
+                              OurChannel(size: size),
                               // const Contacts(),
                             ],
                           ),

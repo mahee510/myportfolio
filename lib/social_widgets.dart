@@ -76,6 +76,16 @@ class SocialWidgets extends StatelessWidget {
               FontAwesomeIcons.stackOverflow,
               size: iconSize,
             ),
+          ),
+          IconButton(
+            onPressed: () async {
+              await launchUrl(Uri.parse(
+                  'https://www.youtube.com/channel/UCGP8BoKX2dPstfiO7MH1jQQ'));
+            },
+            icon: Icon(
+              FontAwesomeIcons.youtube,
+              size: iconSize,
+            ),
           )
         ],
       ),

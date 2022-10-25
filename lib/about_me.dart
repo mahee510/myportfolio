@@ -194,19 +194,19 @@ class _AboutMeState extends State<AboutMe> {
                               width: 1.5,
                             ),
                           ),
-                          padding: MaterialStateProperty.all(
-                            const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                          ),
-                          fixedSize: MaterialStateProperty.all(
-                            Size(
-                              Responsive.isMobile(context)
-                                  ? widget.size.width * 0.3
-                                  : widget.size.width * 0.06,
-                              Responsive.isMobile(context)
-                                  ? widget.size.height * 0.05
-                                  : widget.size.height * 0.03,
-                            ),
-                          ),
+                          // padding: MaterialStateProperty.all(
+                          //   const EdgeInsets.fromLTRB(20, 15, 20, 15),
+                          // ),
+                          // fixedSize: MaterialStateProperty.all(
+                          //   Size(
+                          //     Responsive.isMobile(context)
+                          //         ? widget.size.width * 0.3
+                          //         : widget.size.width * 0.06,
+                          //     Responsive.isMobile(context)
+                          //         ? widget.size.height * 0.05
+                          //         : widget.size.height * 0.03,
+                          //   ),
+                          // ),
                         ),
                         child: Text(
                           "RESUME",
@@ -233,19 +233,19 @@ class _AboutMeState extends State<AboutMe> {
                           side: MaterialStateProperty.all(
                             BorderSide(color: btn2border),
                           ),
-                          padding: MaterialStateProperty.all(
-                            const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                          ),
-                          fixedSize: MaterialStateProperty.all(
-                            Size(
-                              Responsive.isMobile(context)
-                                  ? widget.size.width * 0.3
-                                  : widget.size.width * 0.06,
-                              Responsive.isMobile(context)
-                                  ? widget.size.height * 0.05
-                                  : widget.size.height * 0.03,
-                            ),
-                          ),
+                          // padding: MaterialStateProperty.all(
+                          //   const EdgeInsets.fromLTRB(20, 15, 15, 15),
+                          // ),
+                          // fixedSize: MaterialStateProperty.all(
+                          //   Size(
+                          //     Responsive.isMobile(context)
+                          //         ? widget.size.width * 0.3
+                          //         : widget.size.width * 0.06,
+                          //     Responsive.isMobile(context)
+                          //         ? widget.size.height * 0.05
+                          //         : widget.size.height * 0.03,
+                          //   ),
+                          // ),
                         ),
                         child: Text(
                           "PROJECTS",
@@ -263,18 +263,18 @@ class _AboutMeState extends State<AboutMe> {
                 SizedBox(
                   width: Responsive.isMobile(context)
                       ? widget.size.width
-                      : widget.size.width * 0.2,
+                      : widget.size.width * 0.4,
                   child: AnimatedTextKit(
                     animatedTexts: [
                       TypewriterAnimatedText(
-                        "I am Mahendran, a flutter developer with $year years and $month months of experience. I have good exposure to creating mobile applications and am involved in all phases of the projects. \nI'll assist you with several updates for various platforms. By considering your requirements, I'll try to give the best and most creative solution.",
+                        "I am Mahendran, a Flutter developer with $year years and $month months of experience. I have good exposure to creating mobile applications and am involved in all phases of the projects. \nI'll assist you with several updates for various platforms. By considering your requirements, I'll try to give the best and most creative solution.",
                         speed: const Duration(milliseconds: 30),
                         textStyle: const TextStyle(
                           fontFamily: "Avenir",
                           color: AppColors.black,
                           height: 1.5,
                           letterSpacing: 2.0,
-                          fontSize: 17,
+                          fontSize: 16,
                         ),
                       ),
                     ],
